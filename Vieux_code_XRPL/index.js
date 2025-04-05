@@ -11,18 +11,14 @@ const main= async () => {
   await Recever_Client.connect();
 
   if(!SENDER_WALLET){
-    throw new Error("balls");
+    throw new Error("Sender Wallet not found");
   }
 
   console.log(SENDER_WALLET.address);
   console.log(RECEIVER_WALLET.address);
 
-  const data = "ACCGTTGCTA";
-  const hash = crypto.createHash("sha256").update(data).digest("hex");
-
   const ledgerInfo = await Sender_Client.request({ command: "ledger_current" });
   const lastLedgerSequence = ledgerInfo.result.ledger_current_index + 10; 
-  // Donne un délai supplémentaire de 10 ledgers
 
   // Créez l'objet nftData
   const nftData = {
@@ -31,8 +27,7 @@ const main= async () => {
     batch_number: "ABC123456",
     manufacturing_date: "2024-08-15",
     Code_ATC : "P01BE01",
-    hash: hash // Assurez-vous que 'hash' est défini quelque part dans votre code
-    //Also add png to store the rest of information on médical data
+    hash: hash 
   };
 
   // Convertissez nftData en chaîne JSON, puis en hexadécimal
