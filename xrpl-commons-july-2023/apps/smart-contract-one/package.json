@@ -1,0 +1,22 @@
+{
+  "name": "smart-contract-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "first-interaction": "ts-node ./interactions/first",
+    "deploy-first": "hardhat run --network evmv2 scripts/deploy-first.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.15.0",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "web3": "^4.0.1",
+    "dotenv": "^16.1.4"
+  }
+}
