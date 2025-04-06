@@ -4,7 +4,7 @@ import { getClient } from "./xrpl-client.js";
 import { mintNft, creatNftOffer, acceptNftOffer, creatNftBuyOffer, AcceptBuyOffer } from "./transactions/nfts.js"
 import { Sender_Client,Recever_Client } from './xrpl-client.js'
 import { SENDER_WALLET, RECEIVER_WALLET } from "./wallet.js";
-
+const generateMerkleTreeJSON = requir("../Protocl_d_encription/Merkle-Meta/Merkle-Proof/windows/runMerkleProof.js");
 
 const main= async () => {
   await Sender_Client.connect();//how to deal with receving_client.connect
@@ -27,15 +27,23 @@ const main= async () => {
     batch_number: "ABC123456",
     manufacturing_date: "2024-08-15",
     Code_ATC : "P01BE01",
-    hash: hash 
+    hash: "make this code work"
   };
+
+  nftDataMerklTree = generateMerkleTreeJSON(nftData);
+  console.log(JSON.stringify(nftDataMerklTree.leaves, null, 2));
+  console.log(JSON.stringify(nftDataMerklTree.root, null, 2));
 
   // Convertissez nftData en chaîne JSON, puis en hexadécimal
   const nftDataJson = JSON.stringify(nftData);
   const nftDataHex = xrpl.convertStringToHex(nftDataJson);
 
+  await Recever_Client.disconnect();
+  await Sender_Client.disconnect();
+}
+
   //mint NFT function
-  const NFTokenID = await mintNft(
+/*  const NFTokenID = await mintNft(
     {
       NFTokenTaxon: 0,
       nftDataHex : nftDataHex,
@@ -43,23 +51,6 @@ const main= async () => {
     },
     SENDER_WALLET
   )
-
-  //Creat offer function
-  /*const OfferID = await creatNftOffer(
-    {
-        Flags: NFTokenCreateOfferFlags.tfSellNFToken,
-        NFTokenID: NFTokenID.result.meta.nftoken_id,
-        Amount: "1000000" //drops = 1 XRP
-    },
-    SENDER_WALLET,
-  )
-
-  await acceptNftOffer(
-    {  
-      NFTokenSellOffer: OfferID.result.meta.offer_id,
-    },
-    RECEVER_WALLET,
-  )*/
 
 
   const OfferID = await creatNftBuyOffer(
@@ -77,9 +68,7 @@ const main= async () => {
       SENDER_WALLET,
   )
   console.log("it works");
-
-  await Recever_Client.disconnect();
-  await Sender_Client.disconnect();
 }
+  */
 
 main().catch(console.error);
