@@ -1,0 +1,16 @@
+{
+  "name": "test-aes256",
+  "version": "1.0.0",
+  "description": "Test d'encryptage et decryptage AES-256",
+  "main": "index.js",
+  "scripts": {
+    "encrypt": "node Merkle-Meta/AES256-Encryption-LayerOne/windows/interaction.js encrypt",
+    "decrypt": "node Merkle-Meta/AES256-Encryption-LayerOne/windows/interaction.js decrypt",
+    "encrypt-item": "node Merkle-Meta/AES256-Encryption-LayerOne/windows/interaction.js encrypt-item",
+    "decrypt-item": "node Merkle-Meta/AES256-Encryption-LayerOne/windows/interaction.js decrypt-item",
+    "merkle": "node merkle_test.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1"
+  }
+} 
