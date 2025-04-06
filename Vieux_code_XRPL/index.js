@@ -4,7 +4,10 @@ import { getClient } from "./xrpl-client.js";
 import { mintNft, creatNftOffer, acceptNftOffer, creatNftBuyOffer, AcceptBuyOffer } from "./transactions/nfts.js"
 import { Sender_Client,Recever_Client } from './xrpl-client.js'
 import { SENDER_WALLET, RECEIVER_WALLET } from "./wallet.js";
-const generateMerkleTreeJSON = requir("../Protocl_d_encription/Merkle-Meta/Merkle-Proof/windows/runMerkleProof.js");
+import { generateMerkleTreeJSON } 
+from "../Protocl_d_encription/Merkle-Meta/Merkle-Proof/windows/runMerkleProof.js";
+import {encryptfield, decryptfield }  
+from "../Protocl_d_encription/Merkle-Meta/AES256-Encryption-LayerOne/windows/interaction.js";
 
 const main= async () => {
   await Sender_Client.connect();//how to deal with receving_client.connect
